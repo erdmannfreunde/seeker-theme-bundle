@@ -1,9 +1,7 @@
 {#
   Seeker — Mobile-Nav-Initialisierung.
-  Quelle: nach LASR-Vorbild. Im Gegensatz zu LASR (Gulp, einzelne JS-Dateien)
-  laden wir navigation.js nicht separat — Webpack bündelt sie bereits in
-  /assets/seeker-theme/js/default.bundle.js. NavMobile liegt durch
-  navigation.js auf window.
+  Quelle: nach LASR-Vorbild. navigation.js lädt js_default.html.twig, das
+  im Layout vor diesem Template steht; NavMobile ist dort global definiert.
 #}
 <script>
   new NavMobile('.nav--mobile', {

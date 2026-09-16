@@ -1,15 +1,24 @@
 {#
-  Seeker — Theme-Bundle (Webpack-Output).
-  Lädt das gebündelte default.bundle.js am Ende der Seite. theme_js() aus der
-  Theme Toolbox löst den Pfad unter /assets/seeker-theme/js/ auf und hängt den
-  Cache-Busting-Parameter an. Der Name weicht bewusst von default.js ab: die
-  Toolbox kopiert layout/seeker-theme/js/ in denselben Ordner und würde das
-  Bundle sonst mit dem ungebündelten Entry-Point überschreiben.
-  Alle weiteren js_*-Templates können danach auf die Theme-Helfer
-  (z. B. NavMobile) zugreifen.
-#}
-{% set src = theme_js('default.bundle.js') %}
+  Seeker — Theme-Skripte.
+  Lädt die Skripte aus layout/seeker-theme/js/ am Ende der Seite. Die Theme
+  Toolbox kopiert sie nach /assets/seeker-theme/js/ (ohne Node), theme_js()
+  löst den Pfad auf und hängt den Cache-Busting-Parameter an. Alle weiteren
+  js_*-Templates können danach auf die Theme-Helfer (z. B. NavMobile)
+  zugreifen.
 
-{% if src %}
-  <script src="{{ src }}"></script>
+  Im Debug-Modus kommt das Bundle des Webpack-Dev-Servers dazu, falls
+  vorhanden: Es bringt den HMR-/Reload-Client mit.
+#}
+{% set scripts = ['navigation.js', 'apply-cta.js', 'job-filter.js'] %}
+
+{% if app.debug %}
+  {% set scripts = scripts|merge(['default.bundle.js']) %}
 {% endif %}
+
+{% for script in scripts %}
+  {% set src = theme_js(script) %}
+
+  {% if src %}
+    <script src="{{ src }}"></script>
+  {% endif %}
+{% endfor %}
