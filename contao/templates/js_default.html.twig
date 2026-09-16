@@ -1,8 +1,15 @@
 {#
   Seeker — Theme-Bundle (Webpack-Output).
-  Lädt das gebündelte default.js am Ende der Seite, Pfad über das
-  Encore-Manifest (asset(), siehe fe_page.html.twig). Alle weiteren
-  js_*-Templates können danach auf die Theme-Helfer (z. B. NavMobile)
-  zugreifen.
+  Lädt das gebündelte default.bundle.js am Ende der Seite. theme_js() aus der
+  Theme Toolbox löst den Pfad unter /assets/seeker-theme/js/ auf und hängt den
+  Cache-Busting-Parameter an. Der Name weicht bewusst von default.js ab: die
+  Toolbox kopiert layout/seeker-theme/js/ in denselben Ordner und würde das
+  Bundle sonst mit dem ungebündelten Entry-Point überschreiben.
+  Alle weiteren js_*-Templates können danach auf die Theme-Helfer
+  (z. B. NavMobile) zugreifen.
 #}
-<script src="{{ asset('theme/default.js') }}"></script>
+{% set src = theme_js('default.bundle.js') %}
+
+{% if src %}
+  <script src="{{ src }}"></script>
+{% endif %}
