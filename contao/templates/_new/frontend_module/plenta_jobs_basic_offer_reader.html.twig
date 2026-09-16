@@ -1,0 +1,157 @@
+{# *
+ * Seeker — Stellen-Detailseite (Plenta Reader Override)
+ *
+ * Vollständiges Section-Layout anhand des Seeker-Prototypes:
+ *   Back → Hero (Headline + Meta-Karte) → Aufgaben + Profil
+ *   → Wir bieten → Bewerbungsprozess
+ *
+ * Kontakt + Apply-CTA sind theme-global und kommen NICHT aus dem Reader —
+ * sie werden via CE `contact` als zweiter Artikel auf der Reader-Seite
+ * platziert.
+ *
+ * Verfügbare Twig-Variablen (vom JobOfferReaderController gesetzt):
+ *   jobOffer       — PlentaJobsBasicOfferModel mit allen DCA-Feldern inkl.
+ *                    flowDept, flowRemote, flowTasks, flowProfile, flowConditions
+ *   jobOfferMeta   — Array mit aufbereiteten Werten: title, teaser, description,
+ *                    employmentTypeFormatted, locationFormatted,
+ *                    publicationDateFormatted, image, alias
+ *
+ * Im Reader-Modul muss `plentaJobsBasicTemplateParts = []` gesetzt sein,
+ * damit der Controller nichts in `content` vorbaut — wir rendern komplett
+ * selbst aus jobOffer/jobOfferMeta. * #}
+
+{% extends '@Contao/frontend_module/_base.html.twig' %}
+
+{% block content %}
+    {# Bullets aus den textarea-Feldern. Eine Zeile pro Bullet, leere Zeilen
+       werden ignoriert. Reine Plaintext-Items — kein HTML-Eingang erlaubt. #}
+    {% set tasks      = jobOffer.flowTasks      |default('')|split('\n')|map(s => s|trim)|filter(s => s) %}
+    {% set profile    = jobOffer.flowProfile    |default('')|split('\n')|map(s => s|trim)|filter(s => s) %}
+    {% set conditions = jobOffer.flowConditions |default('')|split('\n')|map(s => s|trim)|filter(s => s) %}
+
+    <div class="job-detail">
+
+        {# ─── BACK-LINK ────────────────────────────────────────────────── #}
+        <p class="job-detail__back">
+            <a href="{{ referer|default('javascript:history.go(-1)') }}">
+                <span class="job-detail__back-icon" aria-hidden="true"></span>
+                Zurück zu allen Stellen
+            </a>
+        </p>
+
+        {# ─── HERO ────────────────────────────────────────────────────── #}
+        <section class="job-detail__hero">
+            <div class="job-detail__hero-content">
+                {% if jobOffer.flowDept %}
+                    <span class="job-detail__eyebrow">{{ jobOffer.flowDept }}</span>
+                {% endif %}
+                <h1 class="job-detail__title">{{ jobOfferMeta.title }}</h1>
+                {% if jobOfferMeta.teaser %}
+                    <div class="job-detail__lead">{{ jobOfferMeta.teaser|raw }}</div>
+                {% endif %}
+                <div class="job-detail__hero-actions">
+                    {# Bewerbungsseite = Weiterleitungsseite (jumpTo) des Reader-Moduls;
+                       Plenta selbst nutzt jumpTo beim Reader nicht. #}
+                    {% if data.jumpTo %}
+                        <a href="{{ insert_tag('link_url::' ~ data.jumpTo) }}?stelle={{ jobOffer.alias }}">Jetzt bewerben</a>
+                    {% endif %}
+                    <a href="mailto:?subject={{ jobOfferMeta.title|e }}" class="btn--secondary">Stelle teilen</a>
+                </div>
+            </div>
+
+            <aside class="job-detail__meta" aria-label="Eckdaten">
+                <div class="job-detail__meta-eyebrow">Eckdaten</div>
+                <dl class="job-detail__meta-list">
+                    {% if jobOfferMeta.locationFormatted %}
+                        <div class="job-detail__meta-row">
+                            <dt>Standort</dt>
+                            <dd>{{ jobOfferMeta.locationFormatted }}</dd>
+                        </div>
+                    {% endif %}
+                    {% if jobOfferMeta.employmentTypeFormatted %}
+                        <div class="job-detail__meta-row">
+                            <dt>Pensum</dt>
+                            <dd>{{ jobOfferMeta.employmentTypeFormatted }}</dd>
+                        </div>
+                    {% endif %}
+                    {% if jobOffer.flowDept %}
+                        <div class="job-detail__meta-row">
+                            <dt>Bereich</dt>
+                            <dd>{{ jobOffer.flowDept }}</dd>
+                        </div>
+                    {% endif %}
+                    {% if jobOfferMeta.publicationDateFormatted %}
+                        <div class="job-detail__meta-row">
+                            <dt>Veröffentlicht</dt>
+                            <dd>{{ jobOfferMeta.publicationDateFormatted }}</dd>
+                        </div>
+                    {% endif %}
+                    {% if jobOffer.addSalary %}
+                        <div class="job-detail__meta-row">
+                            <dt>Gehalt</dt>
+                            <dd>
+                                {%- set salary = [] -%}
+                                {%- if jobOffer.salaryValue > 0    %}{% set salary = salary|merge([jobOffer.salaryValue]) %}{% endif -%}
+                                {%- if jobOffer.salaryMaxValue > 0 %}{% set salary = salary|merge([jobOffer.salaryMaxValue]) %}{% endif -%}
+                                {{ salary|join(' – ') }} {{ jobOffer.salaryCurrency|default('EUR') }}
+                            </dd>
+                        </div>
+                    {% endif %}
+                    {% if jobOffer.flowRemote %}
+                        <div class="job-detail__meta-row job-detail__meta-row--last">
+                            <dt>Remote-Anteil</dt>
+                            <dd>{{ jobOffer.flowRemote }}</dd>
+                        </div>
+                    {% endif %}
+                </dl>
+            </aside>
+        </section>
+
+        {# ─── AUFGABEN + PROFIL ───────────────────────────────────────── #}
+        {% if tasks|length > 0 or profile|length > 0 %}
+        <section class="job-detail__split">
+            {% if tasks|length > 0 %}
+            <div class="job-detail__section">
+                <span class="section-eyebrow">Deine Aufgaben</span>
+                <h2 class="section-title">Was dich erwartet.</h2>
+                <ol class="job-detail__bullets job-detail__bullets--numbered">
+                    {% for item in tasks %}
+                        <li><span class="job-detail__bullet-mark">0{{ loop.index }}</span><span>{{ item }}</span></li>
+                    {% endfor %}
+                </ol>
+            </div>
+            {% endif %}
+            {% if profile|length > 0 %}
+            <div class="job-detail__section">
+                <span class="section-eyebrow">Dein Profil</span>
+                <h2 class="section-title">Was du mitbringst.</h2>
+                <ul class="job-detail__bullets">
+                    {% for item in profile %}
+                        <li><span class="job-detail__bullet-dot" aria-hidden="true"></span><span>{{ item }}</span></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+        </section>
+        {% endif %}
+
+        {# ─── WIR BIETEN ──────────────────────────────────────────────── #}
+        {% if conditions|length > 0 %}
+        <section class="job-detail__band">
+            <div class="job-detail__band-heading">
+                <span class="section-eyebrow">Wir bieten</span>
+                <h2 class="section-title">Konkret und unaufgeregt.</h2>
+            </div>
+            <div class="job-detail__conditions">
+                {% for item in conditions %}
+                    <div class="job-detail__condition">
+                        <span class="job-detail__condition-icon" aria-hidden="true"></span>
+                        <span>{{ item }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+        {% endif %}
+
+    </div>
+{% endblock %}

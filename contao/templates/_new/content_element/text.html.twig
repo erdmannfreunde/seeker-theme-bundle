@@ -1,0 +1,29 @@
+{#
+    Override des Standard content_element/text.html.twig: rendert ein
+    optionales Inline-SVG-Icon vor Headline/Text, falls das generische
+    `inlineSvg`-DCA-Feld gesetzt ist (siehe seeker-theme-bundle/contao/
+    dca/tl_content.php — dieselbe Picker-Schiene nutzt auch ce_card).
+
+    Markup mit gepflegtem Icon:
+
+        <div class="content-text …">
+            <span class="content-text__icon">{{ inline_icon(inlineSvg) }}</span>
+            …Headline + RTE…
+        </div>
+
+    Sanitizer + files/-Pfad-Constraint kommen aus
+    Twig\InlineIconExtension. Ohne Icon ist das Markup identisch zum
+    Contao-Default.
+#}
+{% extends '@Contao/content_element/text.html.twig' %}
+
+{% block inner %}
+    {% set addIcon = data.addIcon|default(addIcon|default(false)) %}
+    {% set icon = data.inlineSvg|default(inlineSvg|default(false)) %}
+
+    {% if addIcon and icon %}
+        <span class="content-text__icon">{{ inline_icon(icon) }}</span>
+    {% endif %}
+
+    {{ parent() }}
+{% endblock %}

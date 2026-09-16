@@ -1,0 +1,36 @@
+parameters:
+  # Seeker-Theme nutzt den Sprite-Modus des Icon-Pickers: alle Icons
+  # werden zur Build-Zeit (cache:warmup) in eine einzige Sprite-Datei
+  # gemergt und im FE per <use href="…#slug"/> referenziert.
+  nutshell_icon_picker.render_mode: 'sprite'
+
+  # Sprite landet unter /assets/seeker-theme/img/sprite.svg — analog zu
+  # den Icon-Einzeldateien, die der Webpack-Build dorthin kopiert.
+  nutshell_icon_picker.sprite_target_path: '%kernel.project_dir%/public/assets/seeker-theme/img/sprite.svg'
+  nutshell_icon_picker.sprite_public_path: '/assets/seeker-theme/img/sprite.svg'
+
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  ErdmannFreunde\SeekerThemeBundle\:
+    resource: '../src/'
+    exclude:
+      - '../src/SeekerThemeBundle.php'
+      - '../src/ContaoManager/'
+
+  # Öffentlich, weil das Formularfeld-Widget FormApplyJobInfo nicht per
+  # Autowiring entsteht und sich den Helper aus dem Container holt.
+  ErdmannFreunde\SeekerThemeBundle\Helper\JobInfoHelper:
+    public: true
+
+  # IconSetResolver vom contao-icon-picker-bundle übernehmen und mit den
+  # Theme-spezifischen Pfaden überschreiben (`%kernel.project_dir%` = project/).
+  Nutshell\IconPicker\Icon\IconSetResolver:
+    public: true
+    arguments:
+      $iconDirs:
+        - '%kernel.project_dir%/layout/seeker-theme/img/icons'
+        - '%kernel.project_dir%/layout/custom/img/icons'

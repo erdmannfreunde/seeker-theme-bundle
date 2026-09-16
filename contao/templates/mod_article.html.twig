@@ -1,0 +1,13 @@
+{#
+  Seeker-Theme-Override: Article-Wrapper-Markup vereinfacht.
+  Wir lassen den Article-Header (h1/h2-Title), das teaserCssID-Markup und
+  die Backend-Hover-Helper weg und rendern nur den nackten Content-Block
+  in seiner .inside. Identisch zum LASR-Override.
+#}
+{% extends "@Contao/mod_article.html.twig" %}
+
+{% block content %}
+    <div class="inside">
+        {{ elements|join|raw }}
+    </div>
+{% endblock %}

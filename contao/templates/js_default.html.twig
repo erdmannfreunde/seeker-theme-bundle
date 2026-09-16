@@ -1,0 +1,8 @@
+{#
+  Seeker — Theme-Bundle (Webpack-Output).
+  Lädt das gebündelte default.js am Ende der Seite, Pfad über das
+  Encore-Manifest (asset(), siehe fe_page.html.twig). Alle weiteren
+  js_*-Templates können danach auf die Theme-Helfer (z. B. NavMobile)
+  zugreifen.
+#}
+<script src="{{ asset('theme/default.js') }}"></script>

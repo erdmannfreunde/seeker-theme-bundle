@@ -1,0 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+$GLOBALS['TL_LANG']['FFL']['apply_job_info'] = ['Stellen-Info', 'Zeigt die per URL-Parameter `?stelle=` gewählte Stelle als Karte mit Bereich, Standort, Pensum, Gehalt und überträgt Stellentitel und Standort als verstecktes Feld. Ohne Stelle erscheint ein Freitextfeld für eine Initiativbewerbung.'];
+
+$GLOBALS['TL_LANG']['MSC']['seeker_initiative'] = 'Initiativbewerbung';
+$GLOBALS['TL_LANG']['MSC']['seeker_initiative_label'] = 'Als was möchtest du bei uns arbeiten?';

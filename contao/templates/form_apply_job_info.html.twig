@@ -1,0 +1,74 @@
+{# *
+ * Seeker — Formularfeld „Stellen-Info" (FormApplyJobInfo)
+ *
+ * Mit Stelle: verstecktes Feld mit dem Job-Alias (Feldname aus dem
+ * Formulargenerator) plus Karte mit Bereich (Eyebrow), Titel und inline
+ * Meta-Reihe (Standort mit Map-Pin · Pensum · Gehalt · Remote). Die Daten
+ * liefert das Widget aus `?stelle={alias}`.
+ *
+ * Ohne Stelle: dieselbe Karte als Initiativbewerbung — Eyebrow, Frage als
+ * Label und Freitextfeld für die Wunschstelle (Pflichtfeld/Platzhalter aus
+ * dem Formulargenerator, Aufbau wie form_text).
+ * #}
+
+{% extends '@Contao/form_row.html.twig' %}
+
+{% block field %}
+    {% set info = this.jobInfo %}
+    {% if info %}
+        <input type="hidden" name="{{ this.name }}" value="{{ this.jobAlias }}">
+        <div class="apply-job-card">
+            <div class="apply-job-card__head">
+                {% if info.dept %}
+                    <span class="apply-job-card__eyebrow">{{ info.dept }}</span>
+                {% endif %}
+                <h2 class="apply-job-card__title">{{ info.title }}</h2>
+            </div>
+
+            {% if info.location or info.employment or info.salary or info.remote %}
+                <div class="apply-job-card__meta">
+                    {% if info.location %}
+                        <span class="apply-job-card__meta-item apply-job-card__meta-item--location">{{ info.location }}</span>
+                    {% endif %}
+                    {% if info.employment %}
+                        <span class="apply-job-card__meta-item">{{ info.employment }}</span>
+                    {% endif %}
+                    {% if info.salary %}
+                        <span class="apply-job-card__meta-item">{{ info.salary }}</span>
+                    {% endif %}
+                    {% if info.remote %}
+                        <span class="apply-job-card__meta-item">Remote: {{ info.remote }}</span>
+                    {% endif %}
+                </div>
+            {% endif %}
+        </div>
+    {% else %}
+        {% set input_attributes = attrs(getAttributes.invoke()) %}
+        <div class="apply-job-card apply-job-card--initiative">
+            <div class="apply-job-card__head">
+                <span class="apply-job-card__eyebrow">{{ 'MSC.seeker_initiative'|trans({}, 'contao_default') }}</span>
+                <label for="ctrl_{{ this.id }}" class="apply-job-card__title">
+                    {% if this.mandatory|default %}
+                        <span class="invisible">{{ this.mandatoryField }} </span>{{ 'MSC.seeker_initiative_label'|trans({}, 'contao_default') }}<span class="mandatory">*</span>
+                    {% else %}
+                        {{ 'MSC.seeker_initiative_label'|trans({}, 'contao_default') }}
+                    {% endif %}
+                </label>
+            </div>
+
+            {% if hasErrors.invoke() %}
+                <p class="error">{{ getErrorAsString.invoke() }}</p>
+            {% endif %}
+
+            <input{{ attrs()
+                .set('type', 'text')
+                .set('name', this.name)
+                .set('id', "ctrl_#{this.id}")
+                .addClass('text')
+                .set('value', this.initiativeText)
+                .mergeWith(input_attributes)
+                .setIfExists('placeholder', input_attributes.placeholder|default|insert_tag)
+            }}>
+        </div>
+    {% endif %}
+{% endblock %}
