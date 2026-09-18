@@ -3,7 +3,7 @@
  *
  * Vollständiges Section-Layout anhand des Seeker-Prototypes:
  *   Back → Hero (Headline + Meta-Karte) → Aufgaben + Profil
- *   → Wir bieten → Bewerbungsprozess
+ *   → Wir bieten → Inhaltselemente der Stelle (falls vorhanden)
  *
  * Kontakt + Apply-CTA sind theme-global und kommen NICHT aus dem Reader —
  * sie werden via CE `contact` als zweiter Artikel auf der Reader-Seite
@@ -16,9 +16,10 @@
  *                    employmentTypeFormatted, locationFormatted,
  *                    publicationDateFormatted, image, alias
  *
- * Im Reader-Modul muss `plentaJobsBasicTemplateParts = []` gesetzt sein,
- * damit der Controller nichts in `content` vorbaut — wir rendern komplett
- * selbst aus jobOffer/jobOfferMeta. * #}
+ * Im Reader-Modul ist unter „Template-Teile“ nur „Inhaltselemente“
+ * (`elements`) aktiv: Der Controller rendert dann ausschließlich die
+ * Inhaltselemente der Stelle in `content`, alle übrigen Felder kommen
+ * direkt aus jobOffer/jobOfferMeta. * #}
 
 {% extends '@Contao/frontend_module/_base.html.twig' %}
 
@@ -151,6 +152,13 @@
                 {% endfor %}
             </div>
         </section>
+        {% endif %}
+
+        {# ─── INHALTSELEMENTE DER STELLE ──────────────────────────────── #}
+        {% if content|default %}
+        <div class="job-detail__elements">
+            {{ content|raw }}
+        </div>
         {% endif %}
 
     </div>
