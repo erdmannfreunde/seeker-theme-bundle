@@ -43,6 +43,29 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['addIcon'] = [
     'sql' => "char(1) NOT NULL default ''",
 ];
 
+/*
+ * Inhaltselement „Zitat" (QuoteController, wie im SOLO-Theme) — Zitattext,
+ * Autor:in und optionales Bild (Bildoptionen wie beim Text-Element über die
+ * addImage-Subpalette des Cores).
+ */
+$GLOBALS['TL_DCA']['tl_content']['palettes']['quote'] = '{type_legend},type,headline;{text_legend},quote_text,quote_author;{image_legend},addImage;{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},cssID;{invisible_legend:hide},invisible,start,stop';
+
+$GLOBALS['TL_DCA']['tl_content']['fields']['quote_text'] = [
+    'label' => &$GLOBALS['TL_LANG']['tl_content']['quote_text'],
+    'exclude' => true,
+    'inputType' => 'textarea',
+    'eval' => ['mandatory' => true, 'basicEntities' => true, 'tl_class' => 'clr'],
+    'sql' => 'text NULL',
+];
+
+$GLOBALS['TL_DCA']['tl_content']['fields']['quote_author'] = [
+    'label' => &$GLOBALS['TL_LANG']['tl_content']['quote_author'],
+    'exclude' => true,
+    'inputType' => 'text',
+    'eval' => ['maxlength' => 255, 'tl_class' => 'w50'],
+    'sql' => "varchar(255) NOT NULL default ''",
+];
+
 $GLOBALS['TL_DCA']['tl_content']['fields']['inlineSvg'] = [
     'label' => &$GLOBALS['TL_LANG']['tl_content']['inlineSvg'],
     'exclude' => true,

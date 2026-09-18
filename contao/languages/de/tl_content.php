@@ -13,3 +13,13 @@ $GLOBALS['TL_LANG']['tl_content']['inlineSvg'] = [
 ];
 
 $GLOBALS['TL_LANG']['tl_content']['icon_legend'] = 'Icon';
+
+$GLOBALS['TL_LANG']['tl_content']['quote_text'] = [
+    'Zitat',
+    'Gib den Zitattext ein. Eine Leerzeile beginnt einen neuen Absatz.',
+];
+
+$GLOBALS['TL_LANG']['tl_content']['quote_author'] = [
+    'Autor:in',
+    'Name und gegebenenfalls Funktion der zitierten Person, z. B. „Aylin Schreiber · Bereichsleitung Pädagogik".',
+];

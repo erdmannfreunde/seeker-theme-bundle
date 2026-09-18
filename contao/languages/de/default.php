@@ -6,3 +6,5 @@ $GLOBALS['TL_LANG']['FFL']['apply_job_info'] = ['Stellen-Info', 'Zeigt die per U
 
 $GLOBALS['TL_LANG']['MSC']['seeker_initiative'] = 'Initiativbewerbung';
 $GLOBALS['TL_LANG']['MSC']['seeker_initiative_label'] = 'Als was möchtest du bei uns arbeiten?';
+
+$GLOBALS['TL_LANG']['CTE']['quote'] = ['Zitat', 'Fügt ein Zitat mit Autor:in und optionalem Bild hinzu.'];

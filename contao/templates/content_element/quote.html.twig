@@ -1,0 +1,65 @@
+{#
+    Inhaltselement „Zitat" (QuoteController, Markup wie im SOLO-Theme).
+
+    Abweichung von SOLO: Die Element-Überschrift (bei Seeker die kleine
+    Zeile über dem Zitat) steht zusammen mit dem Zitat in .quote__body.
+    So bilden Bild und Textspalte bei „Bild links/rechts" genau zwei
+    Spalten, statt dass die Überschrift als eigene Spalte daneben rutscht.
+
+        <div class="content-quote media media--left">
+            <figure>…Bild…</figure>
+            <div class="quote__body">
+                <h2 class="content-headline">…</h2>
+                <figure class="quote">
+                    <blockquote><p>…</p></blockquote>
+                    <figcaption>Autor:in</figcaption>
+                </figure>
+            </div>
+        </div>
+#}
+{% extends '@Contao/content_element/_base.html.twig' %}
+{% use '@Contao/component/_figure.html.twig' %}
+
+{% set content_layout_attributes = attrs()
+    .addClass('media media--' ~ layout, layout and image)
+    .mergeWith(content_layout_attributes|default)
+%}
+
+{# By default we add the layout attributes to the wrapper element. If you want to
+ disable this behavior, set "default_content_layout" to false. #}
+{% set attributes = attrs(attributes|default)
+    .mergeWith(content_layout_attributes, default_content_layout is not defined or default_content_layout)
+%}
+
+{% block quote_media %}
+    {% if image %}
+        {% with {figure: image} %}{{ block('figure_component') }}{% endwith %}
+    {% endif %}
+{% endblock %}
+
+{% block inner %}
+    {% if layout != 'below' %}
+        {{ block('quote_media') }}
+    {% endif %}
+
+    <div class="quote__body">
+        {% if headline.text %}
+            {{ block('headline_component') }}
+        {% endif %}
+
+        <figure class="quote">
+            <blockquote>
+                {%- for paragraph in quote_paragraphs -%}
+                    <p>{{ paragraph|raw }}</p>
+                {%- endfor -%}
+            </blockquote>
+            {% if quote_author %}
+                <figcaption>{{ quote_author }}</figcaption>
+            {% endif %}
+        </figure>
+    </div>
+
+    {% if layout == 'below' %}
+        {{ block('quote_media') }}
+    {% endif %}
+{% endblock %}
