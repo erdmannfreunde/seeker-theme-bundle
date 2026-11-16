@@ -28,6 +28,7 @@
     "erdmannfreunde/contao-grid-bundle": "^2.0",
     "plenta/contao-jobs-basic-bundle": "^3.1",
     "erdmannfreunde/theme-toolbox": "^4.3",
+    "erdmannfreunde/contao-ping-bundle": "^1.0",
     "nutshell-framework/icon-picker": "^1.0",
     "nutshell-framework/contact-element": "^1.3",
     "nutshell-framework/core-bundle": "^0.2",
