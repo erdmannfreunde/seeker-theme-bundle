@@ -1,0 +1,26 @@
+{#
+    Inhaltselement „Badge" (BadgeController): kurze Hinweis- oder
+    Kennzahl-Karte aus festen Feldern.
+
+        <div class="content-badge">
+            <p class="badge__headline">Bewertung</p>
+            <p class="badge__value"><strong>4,3</strong> / 5</p>
+            <p class="badge__note">aus 187 Bewertungen</p>
+        </div>
+
+    Überschrift und Hinweis sind optional. Der Wert erlaubt einfaches HTML
+    und wird mit dem HTML-Sanitizer von Contao ausgegeben.
+#}
+{% extends '@Contao/content_element/_base.html.twig' %}
+
+{% block content %}
+    {% if data.badge_headline %}
+        <p class="badge__headline">{{ data.badge_headline }}</p>
+    {% endif %}
+
+    <p class="badge__value">{{ data.badge_value|sanitize_html('contao') }}</p>
+
+    {% if data.badge_note %}
+        <p class="badge__note">{{ data.badge_note }}</p>
+    {% endif %}
+{% endblock %}

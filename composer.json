@@ -23,7 +23,6 @@
     "contao/manager-plugin": "^2.0",
     "symfony/http-kernel": "^6.0 || ^7.0",
     "nutshell-framework/nutshell": "^2.0",
-    "nutshell-framework/hero-element": "^1.0",
     "nutshell-framework/card-element": "^1.0",
     "erdmannfreunde/contao-grid-bundle": "^2.0",
     "plenta/contao-jobs-basic-bundle": "^3.1",

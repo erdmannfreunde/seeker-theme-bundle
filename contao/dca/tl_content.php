@@ -66,6 +66,40 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['quote_author'] = [
     'sql' => "varchar(255) NOT NULL default ''",
 ];
 
+/*
+ * Inhaltselement „Badge" (BadgeController) — kurze Hinweis- oder
+ * Kennzahl-Karte aus festen Feldern (Überschrift, Wert, Hinweis).
+ * Der Wert erlaubt einfaches HTML; <strong> wird groß dargestellt.
+ */
+$GLOBALS['TL_DCA']['tl_content']['palettes']['badge'] = '{type_legend},type;{badge_legend},badge_headline,badge_value,badge_note;{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},cssID;{invisible_legend:hide},invisible,start,stop';
+
+$GLOBALS['TL_DCA']['tl_content']['fields']['badge_headline'] = [
+    'label' => &$GLOBALS['TL_LANG']['tl_content']['badge_headline'],
+    'exclude' => true,
+    'search' => true,
+    'inputType' => 'text',
+    'eval' => ['maxlength' => 40, 'basicEntities' => true, 'tl_class' => 'w50'],
+    'sql' => "varchar(255) NOT NULL default ''",
+];
+
+$GLOBALS['TL_DCA']['tl_content']['fields']['badge_value'] = [
+    'label' => &$GLOBALS['TL_LANG']['tl_content']['badge_value'],
+    'exclude' => true,
+    'search' => true,
+    'inputType' => 'text',
+    'eval' => ['mandatory' => true, 'maxlength' => 80, 'allowHtml' => true, 'tl_class' => 'clr w50'],
+    'sql' => "varchar(255) NOT NULL default ''",
+];
+
+$GLOBALS['TL_DCA']['tl_content']['fields']['badge_note'] = [
+    'label' => &$GLOBALS['TL_LANG']['tl_content']['badge_note'],
+    'exclude' => true,
+    'search' => true,
+    'inputType' => 'text',
+    'eval' => ['maxlength' => 60, 'basicEntities' => true, 'tl_class' => 'w50'],
+    'sql' => "varchar(255) NOT NULL default ''",
+];
+
 $GLOBALS['TL_DCA']['tl_content']['fields']['inlineSvg'] = [
     'label' => &$GLOBALS['TL_LANG']['tl_content']['inlineSvg'],
     'exclude' => true,

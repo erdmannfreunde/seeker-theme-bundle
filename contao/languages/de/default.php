@@ -8,3 +8,4 @@ $GLOBALS['TL_LANG']['MSC']['seeker_initiative'] = 'Initiativbewerbung';
 $GLOBALS['TL_LANG']['MSC']['seeker_initiative_label'] = 'Als was möchtest du bei uns arbeiten?';
 
 $GLOBALS['TL_LANG']['CTE']['quote'] = ['Zitat', 'Fügt ein Zitat mit Autor:in und optionalem Bild hinzu.'];
+$GLOBALS['TL_LANG']['CTE']['badge'] = ['Badge', 'Fügt eine kurze Hinweis- oder Kennzahl-Karte mit Überschrift, Wert und Hinweis hinzu.'];
