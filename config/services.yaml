@@ -26,6 +26,17 @@ services:
   ErdmannFreunde\SeekerThemeBundle\Helper\JobInfoHelper:
     public: true
 
+  # Ersetzt Plentas Google-for-Jobs-Service, damit der Titel im JSON-LD
+  # ohne HTML-Entities steht (siehe Klasse). Argumente wie bei Plenta.
+  ErdmannFreunde\SeekerThemeBundle\GoogleForJobs\GoogleForJobs:
+    decorates: Plenta\ContaoJobsBasic\GoogleForJobs\GoogleForJobs
+    public: true
+    arguments:
+      - '@contao.image.picture_factory'
+      - '@contao.assets.files_context'
+      - '@Plenta\ContaoJobsBasic\Helper\EmploymentType'
+      - '%kernel.project_dir%'
+
   # IconSetResolver vom contao-icon-picker-bundle übernehmen und mit den
   # Theme-spezifischen Pfaden überschreiben (`%kernel.project_dir%` = project/).
   Nutshell\IconPicker\Icon\IconSetResolver:

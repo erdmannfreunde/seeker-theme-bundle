@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-$GLOBALS['TL_LANG']['tl_plenta_jobs_basic_offer']['flow_legend'] = 'FLOW Detailseite';
+$GLOBALS['TL_LANG']['tl_plenta_jobs_basic_offer']['flow_legend'] = 'Detailseite';
 
 $GLOBALS['TL_LANG']['tl_plenta_jobs_basic_offer']['flowDept'] = [
     'Bereich',

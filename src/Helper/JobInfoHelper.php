@@ -6,6 +6,9 @@ namespace ErdmannFreunde\SeekerThemeBundle\Helper;
 
 use Plenta\ContaoJobsBasic\Contao\Model\PlentaJobsBasicOfferModel;
 use Plenta\ContaoJobsBasic\Helper\MetaFieldsHelper;
+use Plenta\ContaoJobsBasic\Helper\NumberHelper;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Daten der Job-Info-Karte im Bewerbungsformular.
@@ -19,7 +22,43 @@ class JobInfoHelper
 {
     public function __construct(
         private readonly MetaFieldsHelper $metaFieldsHelper,
+        private readonly RequestStack $requestStack,
+        private readonly TranslatorInterface $translator,
     ) {
+    }
+
+    /**
+     * Gehalt wie im Plenta-Reader: Plenta speichert Beträge in der kleinsten
+     * Währungseinheit (Cent), NumberHelper rechnet um und formatiert nach
+     * Locale, die Einheit (Monat, Jahr …) kommt aus Plentas Übersetzung.
+     */
+    public function formatSalary(PlentaJobsBasicOfferModel $offer): string|null
+    {
+        if (!$offer->addSalary) {
+            return null;
+        }
+
+        $locale = $this->requestStack->getCurrentRequest()?->getLocale() ?? 'de';
+        $numberHelper = new NumberHelper($offer->salaryCurrency ?: 'EUR', $locale);
+
+        $parts = [];
+        foreach ([$offer->salaryValue, $offer->salaryMaxValue] as $value) {
+            if ((int) $value > 0) {
+                $parts[] = $numberHelper->formatCurrency((int) $value);
+            }
+        }
+
+        if (!$parts) {
+            return null;
+        }
+
+        $salary = implode(' – ', $parts);
+
+        if ($offer->salaryUnit) {
+            $salary .= ' / '.$this->translator->trans('tl_plenta_jobs_basic_offer.salaryUnits.'.$offer->salaryUnit, [], 'contao_tl_plenta_jobs_basic_offer');
+        }
+
+        return $salary;
     }
 
     /**
@@ -34,25 +73,13 @@ class JobInfoHelper
 
         $meta = $this->metaFieldsHelper->getMetaFields($offer);
 
-        // Salary-String selbst zusammenbauen — der Helper liefert ihn nicht
-        // direkt; wir spiegeln nur, was sonst auf der Detail-Seite zu sehen ist.
-        $salary = null;
-        if ($offer->addSalary) {
-            $parts = [];
-            if ($offer->salaryValue > 0)    { $parts[] = number_format((float) $offer->salaryValue, 0, ',', '.'); }
-            if ($offer->salaryMaxValue > 0) { $parts[] = number_format((float) $offer->salaryMaxValue, 0, ',', '.'); }
-            if ($parts) {
-                $salary = implode(' – ', $parts) . ' ' . ($offer->salaryCurrency ?: 'EUR');
-            }
-        }
-
         return [
             'title'      => $meta['title'] ?? $offer->title,
             'dept'       => $offer->flowDept ?: null,
             'location'   => $meta['locationFormatted'] ?? null,
             'employment' => $meta['employmentTypeFormatted'] ?? null,
             'remote'     => $offer->flowRemote ?: null,
-            'salary'     => $salary,
+            'salary'     => $this->formatSalary($offer),
         ];
     }
 }

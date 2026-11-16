@@ -33,8 +33,11 @@
     <div class="job-detail">
 
         {# ─── BACK-LINK ────────────────────────────────────────────────── #}
+        {# Übergeordnete Seite der Detailseite, in der Demo die Stellenliste.
+           Plentas „referer" ist immer history.go(-1) und führt Besucher:innen
+           von Google zurück zur Suche. #}
         <p class="job-detail__back">
-            <a href="{{ referer|default('javascript:history.go(-1)') }}">
+            <a href="{{ insert_tag('link_url::' ~ insert_tag('page::pid')) }}">
                 <span class="job-detail__back-icon" aria-hidden="true"></span>
                 Zurück zu allen Stellen
             </a>
@@ -56,7 +59,7 @@
                     {% if data.jumpTo %}
                         <a href="{{ insert_tag('link_url::' ~ data.jumpTo) }}?stelle={{ jobOffer.alias }}">Jetzt bewerben</a>
                     {% endif %}
-                    <a href="mailto:?subject={{ jobOfferMeta.title|input_encoded_to_plain_text|url_encode }}" class="btn--secondary">Stelle teilen</a>
+                    <a href="mailto:?subject={{ jobOfferMeta.title|input_encoded_to_plain_text|url_encode }}&amp;body={{ (insert_tag('env::url') ~ '/' ~ insert_tag('env::request'))|url_encode }}" class="btn--secondary">Stelle teilen</a>
                 </div>
             </div>
 
@@ -87,15 +90,11 @@
                             <dd>{{ jobOfferMeta.publicationDateFormatted }}</dd>
                         </div>
                     {% endif %}
-                    {% if jobOffer.addSalary %}
+                    {% set salary = seeker_job_salary(jobOffer) %}
+                    {% if salary %}
                         <div class="job-detail__meta-row">
                             <dt>Gehalt</dt>
-                            <dd>
-                                {%- set salary = [] -%}
-                                {%- if jobOffer.salaryValue > 0    %}{% set salary = salary|merge([jobOffer.salaryValue]) %}{% endif -%}
-                                {%- if jobOffer.salaryMaxValue > 0 %}{% set salary = salary|merge([jobOffer.salaryMaxValue]) %}{% endif -%}
-                                {{ salary|join(' – ') }} {{ jobOffer.salaryCurrency|default('EUR') }}
-                            </dd>
+                            <dd>{{ salary }}</dd>
                         </div>
                     {% endif %}
                     {% if jobOffer.flowRemote %}
@@ -117,7 +116,7 @@
                 <h2 class="section-title">Was dich erwartet.</h2>
                 <ol class="job-detail__bullets job-detail__bullets--numbered">
                     {% for item in tasks %}
-                        <li><span class="job-detail__bullet-mark">0{{ loop.index }}</span><span>{{ item }}</span></li>
+                        <li><span class="job-detail__bullet-mark">{{ '%02d'|format(loop.index) }}</span><span>{{ item }}</span></li>
                     {% endfor %}
                 </ol>
             </div>
