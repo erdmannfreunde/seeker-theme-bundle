@@ -129,26 +129,30 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['singleSRC']['load_callback'][] = sta
     return $value;
 };
 
+// Zeilen aus Icon + Text im rowWizard des Cores, gemeinsam für die Fakten im
+// Standort und die Einträge der Auszeichnungen
+$seekerIconTextRows = [
+    'icon' => [
+        'label' => &$GLOBALS['TL_LANG']['tl_content']['icon_row_icon'],
+        'inputType' => 'select',
+        'options_callback' => static fn (): array => array_keys(
+            Contao\System::getContainer()->get(Nutshell\IconPicker\Icon\IconSetResolver::class)->listAll(),
+        ),
+        // cell_style setzt der rowWizard an die Tabellenzelle; ohne Breite teilen sich Icon und Text die Zeile
+        'eval' => ['includeBlankOption' => true, 'cell_style' => 'width: 12rem'],
+    ],
+    'text' => [
+        'label' => &$GLOBALS['TL_LANG']['tl_content']['icon_row_text'],
+        'inputType' => 'text',
+        'eval' => ['maxlength' => 80],
+    ],
+];
+
 $GLOBALS['TL_DCA']['tl_content']['fields']['location_facts'] = [
     'label' => &$GLOBALS['TL_LANG']['tl_content']['location_facts'],
     'exclude' => true,
     'inputType' => 'rowWizard',
-    'fields' => [
-        'icon' => [
-            'label' => &$GLOBALS['TL_LANG']['tl_content']['location_fact_icon'],
-            'inputType' => 'select',
-            'options_callback' => static fn (): array => array_keys(
-                Contao\System::getContainer()->get(Nutshell\IconPicker\Icon\IconSetResolver::class)->listAll(),
-            ),
-            // cell_style setzt der rowWizard an die Tabellenzelle; ohne Breite teilen sich Icon und Text die Zeile
-            'eval' => ['includeBlankOption' => true, 'cell_style' => 'width: 12rem'],
-        ],
-        'text' => [
-            'label' => &$GLOBALS['TL_LANG']['tl_content']['location_fact_text'],
-            'inputType' => 'text',
-            'eval' => ['maxlength' => 80],
-        ],
-    ],
+    'fields' => $seekerIconTextRows,
     'eval' => ['tl_class' => 'clr'],
     'sql' => 'text NULL',
 ];
@@ -183,4 +187,20 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['location_map_text'] = [
     'inputType' => 'text',
     'eval' => ['maxlength' => 255, 'tl_class' => 'w50'],
     'sql' => "varchar(255) NOT NULL default ''",
+];
+
+/*
+ * Inhaltselement „Auszeichnungen" (AwardsController) — Überschrift und
+ * Auszeichnungen als Zeilen aus Icon + Text. Das Template setzt die Anzahl
+ * der Einträge als Klasse (awards--items-4).
+ */
+$GLOBALS['TL_DCA']['tl_content']['palettes']['awards'] = '{type_legend},type,headline;{awards_legend},awards_items;{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},cssID;{invisible_legend:hide},invisible,start,stop';
+
+$GLOBALS['TL_DCA']['tl_content']['fields']['awards_items'] = [
+    'label' => &$GLOBALS['TL_LANG']['tl_content']['awards_items'],
+    'exclude' => true,
+    'inputType' => 'rowWizard',
+    'fields' => $seekerIconTextRows,
+    'eval' => ['tl_class' => 'clr'],
+    'sql' => 'text NULL',
 ];

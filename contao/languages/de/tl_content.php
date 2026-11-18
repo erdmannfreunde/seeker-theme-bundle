@@ -48,8 +48,8 @@ $GLOBALS['TL_LANG']['tl_content']['location_facts'] = [
     'Kurze Fakten zum Standort mit einem Icon aus dem Theme-Icon-Set (layout/seeker-theme/img/icons), z. B. „130 Kolleg:innen“ oder „U1 Wandsbek Markt, 4 Min.“. Zeilen ohne Text werden nicht ausgegeben.',
 ];
 
-$GLOBALS['TL_LANG']['tl_content']['location_fact_icon'] = ['Icon', ''];
-$GLOBALS['TL_LANG']['tl_content']['location_fact_text'] = ['Text', ''];
+$GLOBALS['TL_LANG']['tl_content']['icon_row_icon'] = ['Icon', ''];
+$GLOBALS['TL_LANG']['tl_content']['icon_row_text'] = ['Text', ''];
 
 $GLOBALS['TL_LANG']['tl_content']['location_jobs_url'] = [
     'Link zu den Stellen',
@@ -69,4 +69,11 @@ $GLOBALS['TL_LANG']['tl_content']['location_map_url'] = [
 $GLOBALS['TL_LANG']['tl_content']['location_map_text'] = [
     'Linktext Karte',
     'Leer: „Adresse & Anfahrt“.',
+];
+
+$GLOBALS['TL_LANG']['tl_content']['awards_legend'] = 'Auszeichnungen';
+
+$GLOBALS['TL_LANG']['tl_content']['awards_items'] = [
+    'Auszeichnungen',
+    'Je Zeile eine Auszeichnung mit einem Icon aus dem Theme-Icon-Set (layout/seeker-theme/img/icons), z. B. „Top Job 2025“. Zeilen ohne Text werden nicht ausgegeben.',
 ];

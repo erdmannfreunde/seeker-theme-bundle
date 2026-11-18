@@ -1,0 +1,28 @@
+{#
+    Inhaltselement „Auszeichnungen" (AwardsController): Überschrift links,
+    Auszeichnungen rechts, mobil untereinander. Die Anzahl der Einträge
+    steht als Klasse am Element, damit sich das Layout je Anzahl steuern lässt.
+
+        <div class="content-awards awards--items-4">
+            <h2>Ausgezeichnet als Arbeitgeber</h2>
+            <ul class="awards__items">
+                <li class="awards__item"><svg class="inline-icon">…</svg>Top Job 2025</li>
+            </ul>
+        </div>
+#}
+{% extends '@Contao/content_element/_base.html.twig' %}
+
+{% set attributes = attrs(attributes|default).addClass('awards--items-' ~ items|length, items is not empty) %}
+
+{% block content %}
+    {% if items %}
+        <ul class="awards__items">
+            {% for item in items %}
+                <li class="awards__item">
+                    {%- if item.icon %}{{ inline_icon(item.icon) }}{% endif -%}
+                    {{ item.text }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}
