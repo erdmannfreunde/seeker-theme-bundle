@@ -112,3 +112,75 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['inlineSvg'] = [
     ],
     'sql' => "varchar(64) NOT NULL default ''",
 ];
+
+/*
+ * Inhaltselement „Standort" (LocationController) — Bild, Dachzeile,
+ * Überschrift, Beschreibung, Fakten mit Icon und zwei Links in einem Element.
+ * Die Fakten sind Zeilen im rowWizard des Cores (Icon + Text).
+ */
+$GLOBALS['TL_DCA']['tl_content']['palettes']['location'] = '{type_legend},type,supline,headline;{text_legend},text;{image_legend},singleSRC,size;{location_facts_legend},location_facts;{link_legend},location_jobs_url,location_jobs_text,location_map_url,location_map_text;{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},cssID;{invisible_legend:hide},invisible,start,stop';
+
+// Nur Bilder im Dateiwähler, wie beim Bild-Element des Cores
+$GLOBALS['TL_DCA']['tl_content']['fields']['singleSRC']['load_callback'][] = static function ($value, Contao\DataContainer $dc) {
+    if ('location' === $dc->activeRecord?->type) {
+        $GLOBALS['TL_DCA']['tl_content']['fields']['singleSRC']['eval']['extensions'] = '%contao.image.valid_extensions%';
+    }
+
+    return $value;
+};
+
+$GLOBALS['TL_DCA']['tl_content']['fields']['location_facts'] = [
+    'label' => &$GLOBALS['TL_LANG']['tl_content']['location_facts'],
+    'exclude' => true,
+    'inputType' => 'rowWizard',
+    'fields' => [
+        'icon' => [
+            'label' => &$GLOBALS['TL_LANG']['tl_content']['location_fact_icon'],
+            'inputType' => 'select',
+            'options_callback' => static fn (): array => array_keys(
+                Contao\System::getContainer()->get(Nutshell\IconPicker\Icon\IconSetResolver::class)->listAll(),
+            ),
+            // cell_style setzt der rowWizard an die Tabellenzelle; ohne Breite teilen sich Icon und Text die Zeile
+            'eval' => ['includeBlankOption' => true, 'cell_style' => 'width: 12rem'],
+        ],
+        'text' => [
+            'label' => &$GLOBALS['TL_LANG']['tl_content']['location_fact_text'],
+            'inputType' => 'text',
+            'eval' => ['maxlength' => 80],
+        ],
+    ],
+    'eval' => ['tl_class' => 'clr'],
+    'sql' => 'text NULL',
+];
+
+$GLOBALS['TL_DCA']['tl_content']['fields']['location_jobs_url'] = [
+    'label' => &$GLOBALS['TL_LANG']['tl_content']['location_jobs_url'],
+    'exclude' => true,
+    'inputType' => 'text',
+    'eval' => ['rgxp' => 'url', 'decodeEntities' => true, 'maxlength' => 2048, 'dcaPicker' => true, 'tl_class' => 'w50'],
+    'sql' => 'text NULL',
+];
+
+$GLOBALS['TL_DCA']['tl_content']['fields']['location_jobs_text'] = [
+    'label' => &$GLOBALS['TL_LANG']['tl_content']['location_jobs_text'],
+    'exclude' => true,
+    'inputType' => 'text',
+    'eval' => ['maxlength' => 255, 'tl_class' => 'w50'],
+    'sql' => "varchar(255) NOT NULL default ''",
+];
+
+$GLOBALS['TL_DCA']['tl_content']['fields']['location_map_url'] = [
+    'label' => &$GLOBALS['TL_LANG']['tl_content']['location_map_url'],
+    'exclude' => true,
+    'inputType' => 'text',
+    'eval' => ['rgxp' => 'url', 'decodeEntities' => true, 'maxlength' => 2048, 'tl_class' => 'clr w50'],
+    'sql' => 'text NULL',
+];
+
+$GLOBALS['TL_DCA']['tl_content']['fields']['location_map_text'] = [
+    'label' => &$GLOBALS['TL_LANG']['tl_content']['location_map_text'],
+    'exclude' => true,
+    'inputType' => 'text',
+    'eval' => ['maxlength' => 255, 'tl_class' => 'w50'],
+    'sql' => "varchar(255) NOT NULL default ''",
+];

@@ -1,0 +1,63 @@
+{#
+    Inhaltselement „Standort" (LocationController): Bild links,
+    Inhalt rechts, auf dem Smartphone das Bild oben. Die Überschrift mit
+    Dachzeile (Badge) steht im Kartenkörper, nicht über der Karte.
+
+        <div class="content-location" id="hamburg">
+            <figure>…Bild…</figure>
+            <div class="location__body">
+                <h2>…Dachzeile + Überschrift…</h2>
+                <div class="rte">…Beschreibung…</div>
+                <ul class="location__facts">
+                    <li class="location__fact"><svg class="inline-icon">…</svg>130 Kolleg:innen</li>
+                </ul>
+                <a class="btn btn--primary location__jobs" href="…">Stellen in Hamburg</a>
+                <a class="link--map" href="…" target="_blank" rel="noreferrer noopener">Adresse &amp; Anfahrt</a>
+            </div>
+        </div>
+
+    Fakten, Button und Kartenlink entfallen, wenn sie nicht gepflegt sind.
+#}
+{% extends '@Contao/content_element/_base.html.twig' %}
+{% use '@Contao/component/_figure.html.twig' %}
+{% use '@Contao/component/_rich_text.html.twig' %}
+
+{% block inner %}
+    {% if image %}
+        {% with {figure: image} %}{{ block('figure_component') }}{% endwith %}
+    {% endif %}
+
+    <div class="location__body">
+        {% if headline.text %}
+            {{ block('headline_component') }}
+        {% endif %}
+
+        {% if text %}
+            {# attributes zurücksetzen, sonst landen ID/Klassen des Elements am .rte #}
+            {% with {text, attributes: null} %}{{ block('rich_text_component') }}{% endwith %}
+        {% endif %}
+
+        {% if facts %}
+            <ul class="location__facts">
+                {% for fact in facts %}
+                    <li class="location__fact">
+                        {%- if fact.icon %}{{ inline_icon(fact.icon) }}{% endif -%}
+                        {{ fact.text }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% if jobs_href %}
+            <a href="{{ jobs_href }}" class="btn btn--primary location__jobs">
+                {{- data.location_jobs_text ?: 'MSC.location_jobs_text'|trans([], 'contao_default') -}}
+            </a>
+        {% endif %}
+
+        {% if map_href %}
+            <a href="{{ map_href }}" class="link--map" target="_blank" rel="noreferrer noopener">
+                {{- data.location_map_text ?: 'MSC.location_map_text'|trans([], 'contao_default') -}}
+            </a>
+        {% endif %}
+    </div>
+{% endblock %}

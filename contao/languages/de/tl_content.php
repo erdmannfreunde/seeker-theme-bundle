@@ -40,3 +40,33 @@ $GLOBALS['TL_LANG']['tl_content']['quote_author'] = [
     'Autor:in',
     'Name und gegebenenfalls Funktion der zitierten Person, z. B. „Aylin Schreiber · Bereichsleitung Pädagogik".',
 ];
+
+$GLOBALS['TL_LANG']['tl_content']['location_facts_legend'] = 'Fakten';
+
+$GLOBALS['TL_LANG']['tl_content']['location_facts'] = [
+    'Fakten',
+    'Kurze Fakten zum Standort mit einem Icon aus dem Theme-Icon-Set (layout/seeker-theme/img/icons), z. B. „130 Kolleg:innen“ oder „U1 Wandsbek Markt, 4 Min.“. Zeilen ohne Text werden nicht ausgegeben.',
+];
+
+$GLOBALS['TL_LANG']['tl_content']['location_fact_icon'] = ['Icon', ''];
+$GLOBALS['TL_LANG']['tl_content']['location_fact_text'] = ['Text', ''];
+
+$GLOBALS['TL_LANG']['tl_content']['location_jobs_url'] = [
+    'Link zu den Stellen',
+    'Ziel des Buttons, z. B. die Stellenseite mit Standort-Filter (?location%5B%5D= plus ID des Standorts). Ohne Link entfällt der Button.',
+];
+
+$GLOBALS['TL_LANG']['tl_content']['location_jobs_text'] = [
+    'Button-Text',
+    'Z. B. „Stellen in Hamburg“. Leer: „Offene Stellen“.',
+];
+
+$GLOBALS['TL_LANG']['tl_content']['location_map_url'] = [
+    'Link zur Karte',
+    'Adresse bei OpenStreetMap oder Google Maps, öffnet in einem neuen Fenster. Ohne Link entfällt der Kartenlink.',
+];
+
+$GLOBALS['TL_LANG']['tl_content']['location_map_text'] = [
+    'Linktext Karte',
+    'Leer: „Adresse & Anfahrt“.',
+];
