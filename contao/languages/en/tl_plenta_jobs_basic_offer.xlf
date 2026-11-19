@@ -1,0 +1,21 @@
+<?xml version="1.0" ?><xliff version="1.1">
+  <file datatype="php" original="contao/languages/en/tl_plenta_jobs_basic_offer.php" source-language="en">
+    <body>
+      <trans-unit id="tl_plenta_jobs_basic_offer.flow_legend">
+        <source>Detail page</source>
+      </trans-unit>
+      <trans-unit id="tl_plenta_jobs_basic_offer.flowDept.0">
+        <source>Department</source>
+      </trans-unit>
+      <trans-unit id="tl_plenta_jobs_basic_offer.flowDept.1">
+        <source>Displayed as a pill above the headline in the hero (e.g. “Education”).</source>
+      </trans-unit>
+      <trans-unit id="tl_plenta_jobs_basic_offer.flowRemote.0">
+        <source>Remote work</source>
+      </trans-unit>
+      <trans-unit id="tl_plenta_jobs_basic_offer.flowRemote.1">
+        <source>Displayed in the meta card on the right of the hero (e.g. “up to 2 days per week”). Optional.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

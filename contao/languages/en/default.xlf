@@ -1,0 +1,78 @@
+<?xml version="1.0" ?><xliff version="1.1">
+  <file datatype="php" original="contao/languages/en/default.php" source-language="en">
+    <body>
+      <trans-unit id="FFL.apply_job_info.0">
+        <source>Job info</source>
+      </trans-unit>
+      <trans-unit id="FFL.apply_job_info.1">
+        <source>Shows the job selected via the URL parameter `?stelle=` as a card with department, location, workload and salary, and submits the job title and location as a hidden field. Without a job, a text field for a speculative application is shown.</source>
+      </trans-unit>
+      <trans-unit id="MSC.seeker_initiative">
+        <source>Speculative application</source>
+      </trans-unit>
+      <trans-unit id="MSC.seeker_initiative_label">
+        <source>Which role are you interested in?</source>
+      </trans-unit>
+      <trans-unit id="MSC.location_jobs_text">
+        <source>Open positions</source>
+      </trans-unit>
+      <trans-unit id="MSC.location_map_text">
+        <source>Address &amp; directions</source>
+      </trans-unit>
+      <trans-unit id="MSC.seeker_job_back">
+        <source>Back to all jobs</source>
+      </trans-unit>
+      <trans-unit id="MSC.seeker_job_apply">
+        <source>Apply now</source>
+      </trans-unit>
+      <trans-unit id="MSC.seeker_job_share">
+        <source>Share job</source>
+      </trans-unit>
+      <trans-unit id="MSC.seeker_job_facts">
+        <source>Key facts</source>
+      </trans-unit>
+      <trans-unit id="MSC.seeker_job_location">
+        <source>Location</source>
+      </trans-unit>
+      <trans-unit id="MSC.seeker_job_employment_type">
+        <source>Employment type</source>
+      </trans-unit>
+      <trans-unit id="MSC.seeker_job_department">
+        <source>Department</source>
+      </trans-unit>
+      <trans-unit id="MSC.seeker_job_published">
+        <source>Published</source>
+      </trans-unit>
+      <trans-unit id="MSC.seeker_job_salary">
+        <source>Salary</source>
+      </trans-unit>
+      <trans-unit id="MSC.seeker_job_remote">
+        <source>Remote work</source>
+      </trans-unit>
+      <trans-unit id="CTE.quote.0">
+        <source>Quote</source>
+      </trans-unit>
+      <trans-unit id="CTE.quote.1">
+        <source>Adds a quote with author and optional image.</source>
+      </trans-unit>
+      <trans-unit id="CTE.badge.0">
+        <source>Badge</source>
+      </trans-unit>
+      <trans-unit id="CTE.badge.1">
+        <source>Adds a short info or key figure card with headline, value and note.</source>
+      </trans-unit>
+      <trans-unit id="CTE.location.0">
+        <source>Location</source>
+      </trans-unit>
+      <trans-unit id="CTE.location.1">
+        <source>Adds a location with image, description, facts and links to jobs and directions.</source>
+      </trans-unit>
+      <trans-unit id="CTE.awards.0">
+        <source>Awards</source>
+      </trans-unit>
+      <trans-unit id="CTE.awards.1">
+        <source>Adds a bar of employer awards, each with an icon and text.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

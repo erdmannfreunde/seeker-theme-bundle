@@ -1,0 +1,102 @@
+<?xml version="1.0" ?><xliff version="1.1">
+  <file datatype="php" original="contao/languages/en/default.php" source-language="en" target-language="de">
+    <body>
+      <trans-unit id="FFL.apply_job_info.0">
+        <source>Job info</source>
+        <target>Stellen-Info</target>
+      </trans-unit>
+      <trans-unit id="FFL.apply_job_info.1">
+        <source>Shows the job selected via the URL parameter `?stelle=` as a card with department, location, workload and salary, and submits the job title and location as a hidden field. Without a job, a text field for a speculative application is shown.</source>
+        <target>Zeigt die per URL-Parameter `?stelle=` gewählte Stelle als Karte mit Bereich, Standort, Pensum, Gehalt und überträgt Stellentitel und Standort als verstecktes Feld. Ohne Stelle erscheint ein Freitextfeld für eine Initiativbewerbung.</target>
+      </trans-unit>
+      <trans-unit id="MSC.seeker_initiative">
+        <source>Speculative application</source>
+        <target>Initiativbewerbung</target>
+      </trans-unit>
+      <trans-unit id="MSC.seeker_initiative_label">
+        <source>Which role are you interested in?</source>
+        <target>Als was möchtest du bei uns arbeiten?</target>
+      </trans-unit>
+      <trans-unit id="MSC.location_jobs_text">
+        <source>Open positions</source>
+        <target>Offene Stellen</target>
+      </trans-unit>
+      <trans-unit id="MSC.location_map_text">
+        <source>Address &amp; directions</source>
+        <target>Adresse &amp; Anfahrt</target>
+      </trans-unit>
+      <trans-unit id="MSC.seeker_job_back">
+        <source>Back to all jobs</source>
+        <target>Zurück zu allen Stellen</target>
+      </trans-unit>
+      <trans-unit id="MSC.seeker_job_apply">
+        <source>Apply now</source>
+        <target>Jetzt bewerben</target>
+      </trans-unit>
+      <trans-unit id="MSC.seeker_job_share">
+        <source>Share job</source>
+        <target>Stelle teilen</target>
+      </trans-unit>
+      <trans-unit id="MSC.seeker_job_facts">
+        <source>Key facts</source>
+        <target>Eckdaten</target>
+      </trans-unit>
+      <trans-unit id="MSC.seeker_job_location">
+        <source>Location</source>
+        <target>Standort</target>
+      </trans-unit>
+      <trans-unit id="MSC.seeker_job_employment_type">
+        <source>Employment type</source>
+        <target>Pensum</target>
+      </trans-unit>
+      <trans-unit id="MSC.seeker_job_department">
+        <source>Department</source>
+        <target>Bereich</target>
+      </trans-unit>
+      <trans-unit id="MSC.seeker_job_published">
+        <source>Published</source>
+        <target>Veröffentlicht</target>
+      </trans-unit>
+      <trans-unit id="MSC.seeker_job_salary">
+        <source>Salary</source>
+        <target>Gehalt</target>
+      </trans-unit>
+      <trans-unit id="MSC.seeker_job_remote">
+        <source>Remote work</source>
+        <target>Remote-Anteil</target>
+      </trans-unit>
+      <trans-unit id="CTE.quote.0">
+        <source>Quote</source>
+        <target>Zitat</target>
+      </trans-unit>
+      <trans-unit id="CTE.quote.1">
+        <source>Adds a quote with author and optional image.</source>
+        <target>Fügt ein Zitat mit Autor:in und optionalem Bild hinzu.</target>
+      </trans-unit>
+      <trans-unit id="CTE.badge.0">
+        <source>Badge</source>
+        <target>Badge</target>
+      </trans-unit>
+      <trans-unit id="CTE.badge.1">
+        <source>Adds a short info or key figure card with headline, value and note.</source>
+        <target>Fügt eine kurze Hinweis- oder Kennzahl-Karte mit Überschrift, Wert und Hinweis hinzu.</target>
+      </trans-unit>
+      <trans-unit id="CTE.location.0">
+        <source>Location</source>
+        <target>Standort</target>
+      </trans-unit>
+      <trans-unit id="CTE.location.1">
+        <source>Adds a location with image, description, facts and links to jobs and directions.</source>
+        <target>Fügt einen Standort mit Bild, Beschreibung, Fakten und Links zu Stellen und Anfahrt hinzu.</target>
+      </trans-unit>
+      <trans-unit id="CTE.awards.0">
+        <source>Awards</source>
+        <target>Auszeichnungen</target>
+      </trans-unit>
+      <trans-unit id="CTE.awards.1">
+        <source>Adds a bar of employer awards, each with an icon and text.</source>
+        <target>Fügt eine Leiste mit Auszeichnungen als Arbeitgeber hinzu, je Eintrag Icon und Text.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

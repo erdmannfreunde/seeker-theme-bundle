@@ -19,8 +19,11 @@
  * Im Reader-Modul ist unter „Template-Teile“ nur „Inhaltselemente“
  * (`elements`) aktiv: Der Controller rendert dann ausschließlich die
  * Inhaltselemente der Stelle in `content`, alle übrigen Felder kommen
- * direkt aus jobOffer/jobOfferMeta. * #}
+ * direkt aus jobOffer/jobOfferMeta.
+ *
+ * Texte kommen aus contao/languages/{de,en}/default.xlf (MSC.seeker_job_*). * #}
 
+{% trans_default_domain 'contao_default' %}
 {% extends '@Contao/frontend_module/_base.html.twig' %}
 
 {% block content %}
@@ -36,7 +39,7 @@
         <p class="job-detail__back">
             <a href="{{ insert_tag('link_url::' ~ insert_tag('page::pid')) }}">
                 <span class="job-detail__back-icon" aria-hidden="true"></span>
-                Zurück zu allen Stellen
+                {{ 'MSC.seeker_job_back'|trans }}
             </a>
         </p>
 
@@ -54,49 +57,49 @@
                     {# Bewerbungsseite = Weiterleitungsseite (jumpTo) des Reader-Moduls;
                        Plenta selbst nutzt jumpTo beim Reader nicht. #}
                     {% if data.jumpTo %}
-                        <a href="{{ insert_tag('link_url::' ~ data.jumpTo) }}?stelle={{ jobOfferMeta.alias }}">Jetzt bewerben</a>
+                        <a href="{{ insert_tag('link_url::' ~ data.jumpTo) }}?stelle={{ jobOfferMeta.alias }}">{{ 'MSC.seeker_job_apply'|trans }}</a>
                     {% endif %}
-                    <a href="mailto:?subject={{ jobOfferMeta.title|input_encoded_to_plain_text|url_encode }}&amp;body={{ (insert_tag('env::url') ~ '/' ~ insert_tag('env::request'))|url_encode }}" class="btn--secondary">Stelle teilen</a>
+                    <a href="mailto:?subject={{ jobOfferMeta.title|input_encoded_to_plain_text|url_encode }}&amp;body={{ (insert_tag('env::url') ~ '/' ~ insert_tag('env::request'))|url_encode }}" class="btn--secondary">{{ 'MSC.seeker_job_share'|trans }}</a>
                 </div>
             </div>
 
-            <aside class="job-detail__meta" aria-label="Eckdaten">
-                <div class="job-detail__meta-eyebrow">Eckdaten</div>
+            <aside class="job-detail__meta" aria-label="{{ 'MSC.seeker_job_facts'|trans }}">
+                <div class="job-detail__meta-eyebrow">{{ 'MSC.seeker_job_facts'|trans }}</div>
                 <dl class="job-detail__meta-list">
                     {% if jobOfferMeta.locationFormatted %}
                         <div class="job-detail__meta-row">
-                            <dt>Standort</dt>
+                            <dt>{{ 'MSC.seeker_job_location'|trans }}</dt>
                             <dd>{{ jobOfferMeta.locationFormatted }}</dd>
                         </div>
                     {% endif %}
                     {% if jobOfferMeta.employmentTypeFormatted %}
                         <div class="job-detail__meta-row">
-                            <dt>Pensum</dt>
+                            <dt>{{ 'MSC.seeker_job_employment_type'|trans }}</dt>
                             <dd>{{ jobOfferMeta.employmentTypeFormatted }}</dd>
                         </div>
                     {% endif %}
                     {% if jobOffer.flowDept %}
                         <div class="job-detail__meta-row">
-                            <dt>Bereich</dt>
+                            <dt>{{ 'MSC.seeker_job_department'|trans }}</dt>
                             <dd>{{ jobOffer.flowDept }}</dd>
                         </div>
                     {% endif %}
                     {% if jobOfferMeta.publicationDateFormatted %}
                         <div class="job-detail__meta-row">
-                            <dt>Veröffentlicht</dt>
+                            <dt>{{ 'MSC.seeker_job_published'|trans }}</dt>
                             <dd>{{ jobOfferMeta.publicationDateFormatted }}</dd>
                         </div>
                     {% endif %}
                     {% set salary = seeker_job_salary(jobOffer) %}
                     {% if salary %}
                         <div class="job-detail__meta-row">
-                            <dt>Gehalt</dt>
+                            <dt>{{ 'MSC.seeker_job_salary'|trans }}</dt>
                             <dd>{{ salary }}</dd>
                         </div>
                     {% endif %}
                     {% if jobOffer.flowRemote %}
                         <div class="job-detail__meta-row job-detail__meta-row--last">
-                            <dt>Remote-Anteil</dt>
+                            <dt>{{ 'MSC.seeker_job_remote'|trans }}</dt>
                             <dd>{{ jobOffer.flowRemote }}</dd>
                         </div>
                     {% endif %}

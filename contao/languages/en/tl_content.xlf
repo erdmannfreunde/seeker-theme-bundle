@@ -1,0 +1,108 @@
+<?xml version="1.0" ?><xliff version="1.1">
+  <file datatype="php" original="contao/languages/en/tl_content.php" source-language="en">
+    <body>
+      <trans-unit id="tl_content.addIcon.0">
+        <source>Add an icon</source>
+      </trans-unit>
+      <trans-unit id="tl_content.addIcon.1">
+        <source>Prepend an SVG icon from the theme icon set to the content element.</source>
+      </trans-unit>
+      <trans-unit id="tl_content.inlineSvg.0">
+        <source>Icon</source>
+      </trans-unit>
+      <trans-unit id="tl_content.inlineSvg.1">
+        <source>Choose an SVG icon from the theme icon set (layout/seeker-theme/img/icons). It is rendered inline in the HTML (via sanitizer) and inherits CSS colors via currentcolor.</source>
+      </trans-unit>
+      <trans-unit id="tl_content.icon_legend">
+        <source>Icon</source>
+      </trans-unit>
+      <trans-unit id="tl_content.quote_text.0">
+        <source>Quote</source>
+      </trans-unit>
+      <trans-unit id="tl_content.quote_text.1">
+        <source>Enter the quote text. An empty line starts a new paragraph.</source>
+      </trans-unit>
+      <trans-unit id="tl_content.quote_author.0">
+        <source>Author</source>
+      </trans-unit>
+      <trans-unit id="tl_content.quote_author.1">
+        <source>Name and, if applicable, role of the quoted person, e.g. “Aylin Schreiber · Head of Education”.</source>
+      </trans-unit>
+      <trans-unit id="tl_content.badge_legend">
+        <source>Badge</source>
+      </trans-unit>
+      <trans-unit id="tl_content.badge_headline.0">
+        <source>Headline</source>
+      </trans-unit>
+      <trans-unit id="tl_content.badge_headline.1">
+        <source>Optional short line above the value, e.g. “Application deadline”.</source>
+      </trans-unit>
+      <trans-unit id="tl_content.badge_value.0">
+        <source>Value</source>
+      </trans-unit>
+      <trans-unit id="tl_content.badge_value.1">
+        <source>The content of the card, e.g. “30 June”. Simple HTML is allowed: text in &amp;lt;strong&amp;gt; is displayed large, e.g. &amp;lt;strong&amp;gt;4.3&amp;lt;/strong&amp;gt; / 5.</source>
+      </trans-unit>
+      <trans-unit id="tl_content.badge_note.0">
+        <source>Note</source>
+      </trans-unit>
+      <trans-unit id="tl_content.badge_note.1">
+        <source>Optional additional line below the value, e.g. “Starting in September”.</source>
+      </trans-unit>
+      <trans-unit id="tl_content.location_facts_legend">
+        <source>Facts</source>
+      </trans-unit>
+      <trans-unit id="tl_content.location_facts.0">
+        <source>Facts</source>
+      </trans-unit>
+      <trans-unit id="tl_content.location_facts.1">
+        <source>Short facts about the location, each with an icon from the theme icon set (layout/seeker-theme/img/icons), e.g. “130 colleagues” or “U1 Wandsbek Markt, 4 min”. Rows without text are not displayed.</source>
+      </trans-unit>
+      <trans-unit id="tl_content.icon_row_icon.0">
+        <source>Icon</source>
+      </trans-unit>
+      <trans-unit id="tl_content.icon_row_icon.1">
+        <source></source>
+      </trans-unit>
+      <trans-unit id="tl_content.icon_row_text.0">
+        <source>Text</source>
+      </trans-unit>
+      <trans-unit id="tl_content.icon_row_text.1">
+        <source></source>
+      </trans-unit>
+      <trans-unit id="tl_content.location_jobs_url.0">
+        <source>Link to jobs</source>
+      </trans-unit>
+      <trans-unit id="tl_content.location_jobs_url.1">
+        <source>Target of the button, e.g. the jobs page with a location filter (?location%5B%5D= plus the ID of the location). Without a link, the button is omitted.</source>
+      </trans-unit>
+      <trans-unit id="tl_content.location_jobs_text.0">
+        <source>Button text</source>
+      </trans-unit>
+      <trans-unit id="tl_content.location_jobs_text.1">
+        <source>E.g. “Jobs in Hamburg”. Empty: “Open positions”.</source>
+      </trans-unit>
+      <trans-unit id="tl_content.location_map_url.0">
+        <source>Link to map</source>
+      </trans-unit>
+      <trans-unit id="tl_content.location_map_url.1">
+        <source>Address on OpenStreetMap or Google Maps, opens in a new window. Without a link, the map link is omitted.</source>
+      </trans-unit>
+      <trans-unit id="tl_content.location_map_text.0">
+        <source>Map link text</source>
+      </trans-unit>
+      <trans-unit id="tl_content.location_map_text.1">
+        <source>Empty: “Address &amp; directions”.</source>
+      </trans-unit>
+      <trans-unit id="tl_content.awards_legend">
+        <source>Awards</source>
+      </trans-unit>
+      <trans-unit id="tl_content.awards_items.0">
+        <source>Awards</source>
+      </trans-unit>
+      <trans-unit id="tl_content.awards_items.1">
+        <source>One award per row with an icon from the theme icon set (layout/seeker-theme/img/icons), e.g. “Top Job 2025”. Rows without text are not displayed.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

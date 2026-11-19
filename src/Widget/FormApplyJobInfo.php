@@ -62,7 +62,7 @@ class FormApplyJobInfo extends Widget
 
         if ($request && $container->get('contao.routing.scope_matcher')->isBackendRequest($request)) {
             $template = new BackendTemplate('be_wildcard');
-            $template->wildcard = '### STELLEN-INFO (aus ?stelle=, sonst Initiativbewerbung) ###';
+            $template->wildcard = '### ' . $GLOBALS['TL_LANG']['FFL']['apply_job_info'][0] . ' ###';
 
             return $template->parse();
         }
