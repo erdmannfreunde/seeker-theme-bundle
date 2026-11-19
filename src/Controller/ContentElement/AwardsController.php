@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Inhaltselement „Auszeichnungen": Überschrift und Auszeichnungen als
+ * Inhaltselement „Auszeichnungen“: Überschrift und Auszeichnungen als
  * Zeilen aus Icon + Text. Ersetzt die frühere Konstruktion aus Reihe,
  * Spalte und einzelnen Text-Elementen.
  */

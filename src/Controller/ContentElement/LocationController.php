@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Inhaltselement „Standort": Bild, Dachzeile, Überschrift,
+ * Inhaltselement „Standort“: Bild, Dachzeile, Überschrift,
  * Beschreibung, Fakten mit Icon und zwei Links (Stellen am Standort,
  * Adresse & Anfahrt) in einem Element. Ersetzt die frühere Konstruktion
  * aus drei verschachtelten Elementgruppen.

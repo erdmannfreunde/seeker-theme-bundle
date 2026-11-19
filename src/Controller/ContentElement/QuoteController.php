@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Inhaltselement „Zitat" (wie im SOLO-Theme): Zitattext, Autor:in und
+ * Inhaltselement „Zitat“ (wie im SOLO-Theme): Zitattext, Autor:in und
  * optionales Bild. Bild, Bildgröße und Bildausrichtung kommen über die
  * addImage-Subpalette des Cores wie beim Text-Element.
  */

@@ -7,7 +7,7 @@ declare(strict_types=1);
  *
  * Plenta blendet beim Stellen-Reader keine Weiterleitungsseite ein. Das
  * Reader-Template nutzt jumpTo als Bewerbungsseite für den Button
- * „Jetzt bewerben" ({{link_url::jumpTo}}?stelle={alias}).
+ * „Jetzt bewerben“ ({{link_url::jumpTo}}?stelle={alias}).
  */
 
 use Contao\CoreBundle\DataContainer\PaletteManipulator;

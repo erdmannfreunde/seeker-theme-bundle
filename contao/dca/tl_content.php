@@ -53,7 +53,7 @@ PaletteManipulator::create()
 ;
 
 /*
- * Inhaltselement „Zitat" (QuoteController, wie im SOLO-Theme) — Zitattext,
+ * Inhaltselement „Zitat“ (QuoteController, wie im SOLO-Theme) — Zitattext,
  * Autor:in und optionales Bild (Bildoptionen wie beim Text-Element über die
  * addImage-Subpalette des Cores).
  */
@@ -76,7 +76,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['quote_author'] = [
 ];
 
 /*
- * Inhaltselement „Badge" (BadgeController) — kurze Hinweis- oder
+ * Inhaltselement „Badge“ (BadgeController) — kurze Hinweis- oder
  * Kennzahl-Karte aus festen Feldern (Überschrift, Wert, Hinweis).
  * Der Wert erlaubt einfaches HTML; <strong> wird groß dargestellt.
  */
@@ -123,7 +123,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['inlineSvg'] = [
 ];
 
 /*
- * Inhaltselement „Standort" (LocationController) — Bild, Dachzeile,
+ * Inhaltselement „Standort“ (LocationController) — Bild, Dachzeile,
  * Überschrift, Beschreibung, Fakten mit Icon und zwei Links in einem Element.
  * Die Fakten sind Zeilen im rowWizard des Cores (Icon + Text).
  */
@@ -199,7 +199,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['location_map_text'] = [
 ];
 
 /*
- * Inhaltselement „Auszeichnungen" (AwardsController) — Überschrift und
+ * Inhaltselement „Auszeichnungen“ (AwardsController) — Überschrift und
  * Auszeichnungen als Zeilen aus Icon + Text. Das Template setzt die Anzahl
  * der Einträge als Klasse (awards--items-4).
  */

@@ -10,7 +10,7 @@ use Contao\Widget;
 use ErdmannFreunde\SeekerThemeBundle\Helper\JobInfoHelper;
 
 /**
- * Formularfeld „Stellen-Info" (Typ apply_job_info).
+ * Formularfeld „Stellen-Info“ (Typ apply_job_info).
  *
  * Mit gültigem `?stelle=…` zeigt es die Stelle als Karte im Formular (wird
  * so bei Ajax-Schrittwechseln mitgeliefert) und überträgt sie über ein
@@ -19,7 +19,7 @@ use ErdmannFreunde\SeekerThemeBundle\Helper\JobInfoHelper;
  *
  * Ohne gültigen Alias wird daraus eine Initiativbewerbung: ein Freitextfeld
  * für die selbst bezeichnete Wunschstelle, gespeichert als
- * „Initiativbewerbung: …". Pflichtfeld und Platzhalter kommen aus dem
+ * „Initiativbewerbung: …“. Pflichtfeld und Platzhalter kommen aus dem
  * Formulargenerator.
  */
 class FormApplyJobInfo extends Widget

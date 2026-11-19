@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Inhaltselement „Badge": kurze Hinweis- oder Kennzahl-Karte aus festen
+ * Inhaltselement „Badge“: kurze Hinweis- oder Kennzahl-Karte aus festen
  * Feldern (Überschrift, Wert, Hinweis). Feste Felder statt Rich Text, damit
  * die Karte immer dasselbe Markup bekommt. Das Template liest die Felder
  * aus `data`.

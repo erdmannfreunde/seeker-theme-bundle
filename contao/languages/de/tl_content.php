@@ -38,7 +38,7 @@ $GLOBALS['TL_LANG']['tl_content']['badge_note'] = [
 
 $GLOBALS['TL_LANG']['tl_content']['quote_author'] = [
     'Autor:in',
-    'Name und gegebenenfalls Funktion der zitierten Person, z. B. „Aylin Schreiber · Bereichsleitung Pädagogik".',
+    'Name und gegebenenfalls Funktion der zitierten Person, z. B. „Aylin Schreiber · Bereichsleitung Pädagogik“.',
 ];
 
 $GLOBALS['TL_LANG']['tl_content']['location_facts_legend'] = 'Fakten';
