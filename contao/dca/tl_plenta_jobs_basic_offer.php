@@ -12,9 +12,6 @@ declare(strict_types=1);
  *   flowDept        Bereich-Pill (Eyebrow im Hero)
  *   flowRemote      Remote-Anteil (Meta-Karte, optional)
  *
- * Aufgaben, Profil und „Wir bieten“ sind Inhaltselemente „Liste“ der
- * Stelle (Wir bieten mit der Klasse `list--benefits`).
- *
  * Bewerbungsprozess + Kontakt+CTA sind theme-global und kommen NICHT aus
  * dem Job — siehe Reader-Template bzw. das CE `contact`.
  */
@@ -28,7 +25,6 @@ PaletteManipulator::create()
 ;
 
 $GLOBALS['TL_DCA']['tl_plenta_jobs_basic_offer']['fields']['flowDept'] = [
-    'label' => &$GLOBALS['TL_LANG']['tl_plenta_jobs_basic_offer']['flowDept'],
     'exclude' => true,
     'inputType' => 'text',
     'eval' => ['maxlength' => 64, 'tl_class' => 'w50'],
@@ -36,7 +32,6 @@ $GLOBALS['TL_DCA']['tl_plenta_jobs_basic_offer']['fields']['flowDept'] = [
 ];
 
 $GLOBALS['TL_DCA']['tl_plenta_jobs_basic_offer']['fields']['flowRemote'] = [
-    'label' => &$GLOBALS['TL_LANG']['tl_plenta_jobs_basic_offer']['flowRemote'],
     'exclude' => true,
     'inputType' => 'text',
     'eval' => ['maxlength' => 64, 'tl_class' => 'w50'],
