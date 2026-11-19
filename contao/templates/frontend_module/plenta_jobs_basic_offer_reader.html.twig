@@ -24,7 +24,10 @@
 {% extends '@Contao/frontend_module/_base.html.twig' %}
 
 {% block content %}
-    <div class="job-detail">
+    {# data-job-alias: Alias der Stelle (bei Übersetzungen der übersetzte) für
+       apply-cta.js, das ihn an die Bewerben-Buttons außerhalb des Readers
+       (CE `contact`) als ?stelle= anhängt. #}
+    <div class="job-detail" data-job-alias="{{ jobOfferMeta.alias }}">
 
         {# ─── BACK-LINK ────────────────────────────────────────────────── #}
         {# Übergeordnete Seite der Detailseite, in der Demo die Stellenliste.
@@ -51,7 +54,7 @@
                     {# Bewerbungsseite = Weiterleitungsseite (jumpTo) des Reader-Moduls;
                        Plenta selbst nutzt jumpTo beim Reader nicht. #}
                     {% if data.jumpTo %}
-                        <a href="{{ insert_tag('link_url::' ~ data.jumpTo) }}?stelle={{ jobOffer.alias }}">Jetzt bewerben</a>
+                        <a href="{{ insert_tag('link_url::' ~ data.jumpTo) }}?stelle={{ jobOfferMeta.alias }}">Jetzt bewerben</a>
                     {% endif %}
                     <a href="mailto:?subject={{ jobOfferMeta.title|input_encoded_to_plain_text|url_encode }}&amp;body={{ (insert_tag('env::url') ~ '/' ~ insert_tag('env::request'))|url_encode }}" class="btn--secondary">Stelle teilen</a>
                 </div>
