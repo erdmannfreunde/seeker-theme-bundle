@@ -44,6 +44,15 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['addIcon'] = [
 ];
 
 /*
+ * Dachzeile (Feld aus dem Nutshell core-bundle) auch für „Liste“, z. B.
+ * „Deine Aufgaben“ über den Listen der Stellen-Detailseite.
+ */
+PaletteManipulator::create()
+    ->addField('supline', 'type')
+    ->applyToPalette('list', 'tl_content')
+;
+
+/*
  * Inhaltselement „Zitat" (QuoteController, wie im SOLO-Theme) — Zitattext,
  * Autor:in und optionales Bild (Bildoptionen wie beim Text-Element über die
  * addImage-Subpalette des Cores).

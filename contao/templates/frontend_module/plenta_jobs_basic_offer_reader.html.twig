@@ -2,8 +2,8 @@
  * Seeker — Stellen-Detailseite (Plenta Reader Override)
  *
  * Vollständiges Section-Layout anhand des Seeker-Prototypes:
- *   Back → Hero (Headline + Meta-Karte) → Aufgaben + Profil
- *   → Wir bieten → Inhaltselemente der Stelle (falls vorhanden)
+ *   Back → Hero (Headline + Meta-Karte) → Inhaltselemente der Stelle
+ *   (Aufgaben, Profil und „Wir bieten“ als Elemente „Liste“)
  *
  * Kontakt + Apply-CTA sind theme-global und kommen NICHT aus dem Reader —
  * sie werden via CE `contact` als zweiter Artikel auf der Reader-Seite
@@ -11,7 +11,7 @@
  *
  * Verfügbare Twig-Variablen (vom JobOfferReaderController gesetzt):
  *   jobOffer       — PlentaJobsBasicOfferModel mit allen DCA-Feldern inkl.
- *                    flowDept, flowRemote, flowTasks, flowProfile, flowConditions
+ *                    flowDept, flowRemote
  *   jobOfferMeta   — Array mit aufbereiteten Werten: title, teaser, description,
  *                    employmentTypeFormatted, locationFormatted,
  *                    publicationDateFormatted, image, alias
@@ -24,12 +24,6 @@
 {% extends '@Contao/frontend_module/_base.html.twig' %}
 
 {% block content %}
-    {# Bullets aus den textarea-Feldern. Eine Zeile pro Bullet, leere Zeilen
-       werden ignoriert. Reine Plaintext-Items — kein HTML-Eingang erlaubt. #}
-    {% set tasks      = jobOffer.flowTasks      |default('')|split('\n')|map(s => s|trim)|filter(s => s) %}
-    {% set profile    = jobOffer.flowProfile    |default('')|split('\n')|map(s => s|trim)|filter(s => s) %}
-    {% set conditions = jobOffer.flowConditions |default('')|split('\n')|map(s => s|trim)|filter(s => s) %}
-
     <div class="job-detail">
 
         {# ─── BACK-LINK ────────────────────────────────────────────────── #}
@@ -106,52 +100,6 @@
                 </dl>
             </aside>
         </section>
-
-        {# ─── AUFGABEN + PROFIL ───────────────────────────────────────── #}
-        {% if tasks|length > 0 or profile|length > 0 %}
-        <section class="job-detail__split">
-            {% if tasks|length > 0 %}
-            <div class="job-detail__section">
-                <span class="section-eyebrow">Deine Aufgaben</span>
-                <h2 class="section-title">Was dich erwartet.</h2>
-                <ol class="job-detail__bullets job-detail__bullets--numbered">
-                    {% for item in tasks %}
-                        <li><span class="job-detail__bullet-mark">{{ '%02d'|format(loop.index) }}</span><span>{{ item }}</span></li>
-                    {% endfor %}
-                </ol>
-            </div>
-            {% endif %}
-            {% if profile|length > 0 %}
-            <div class="job-detail__section">
-                <span class="section-eyebrow">Dein Profil</span>
-                <h2 class="section-title">Was du mitbringst.</h2>
-                <ul class="job-detail__bullets">
-                    {% for item in profile %}
-                        <li><span class="job-detail__bullet-dot" aria-hidden="true"></span><span>{{ item }}</span></li>
-                    {% endfor %}
-                </ul>
-            </div>
-            {% endif %}
-        </section>
-        {% endif %}
-
-        {# ─── WIR BIETEN ──────────────────────────────────────────────── #}
-        {% if conditions|length > 0 %}
-        <section class="job-detail__band">
-            <div class="job-detail__band-heading">
-                <span class="section-eyebrow">Wir bieten</span>
-                <h2 class="section-title">Konkret und unaufgeregt.</h2>
-            </div>
-            <div class="job-detail__conditions">
-                {% for item in conditions %}
-                    <div class="job-detail__condition">
-                        <span class="job-detail__condition-icon" aria-hidden="true"></span>
-                        <span>{{ item }}</span>
-                    </div>
-                {% endfor %}
-            </div>
-        </section>
-        {% endif %}
 
         {# ─── INHALTSELEMENTE DER STELLE ──────────────────────────────── #}
         {% if content|default %}
