@@ -1,0 +1,32 @@
+{#
+    Override des Newsreaders (Blog-Beitrag): Der Zurück-Link steht über dem
+    Beitrag statt darunter, wie „Zurück zu allen Stellen“ auf der
+    Stellenseite. Im HTML vorne, damit Tastatur und Screenreader ihn in
+    derselben Reihenfolge erreichen, wie er angezeigt wird.
+
+    Link und Beschriftung kommen aus dem Modul (Übersichtsseite, Eigene
+    Beschriftung). Sonst unverändert gegenüber dem Contao-Original.
+#}
+{% extends '@Contao/block_searchable.html.twig' %}
+
+{% block content %}
+
+    {% if referer|default %}
+        <!-- indexer::stop -->
+        <p class="back"><a href="{{ referer }}" title="{{ back }}">{{ back }}</a></p>
+        <!-- indexer::continue -->
+    {% endif %}
+
+    {{ articles|raw }}
+
+    {% if allowComments|default %}
+        <div class="ce_comments block">
+            <{{ hlc }}>{{ hlcText }}</{{ hlc }}>
+            {{ comments|join|raw }}
+            {{ pagination|default|raw }}
+            <{{ hlc }}>{{ addComment }}</{{ hlc }}>
+            {{ include('@Contao/mod_comment_form.html.twig', ignore_missing: true) }}
+        </div>
+    {% endif %}
+
+{% endblock %}
