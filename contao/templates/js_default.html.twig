@@ -9,7 +9,7 @@
   Im Debug-Modus kommt das Bundle des Webpack-Dev-Servers dazu, falls
   vorhanden: Es bringt den HMR-/Reload-Client mit.
 #}
-{% set scripts = ['navigation.js', 'apply-cta.js', 'job-filter.js'] %}
+{% set scripts = ['navigation.js', 'apply-cta.js', 'job-filter.js', 'forms.js'] %}
 
 {% if app.debug %}
   {% set scripts = scripts|merge(['default.bundle.js']) %}
